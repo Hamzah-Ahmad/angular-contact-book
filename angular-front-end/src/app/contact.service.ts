@@ -41,4 +41,11 @@ export class ContactService {
     return this.http.get<Object[]>("http://localhost:3000/contacts");
     //return this.contacts;
   }
+
+  deleteContact(id) {
+    return this.http.delete(
+      `http://localhost:3000/contacts/${id}`,
+      this.httpOptions
+    );
+  }
 }
