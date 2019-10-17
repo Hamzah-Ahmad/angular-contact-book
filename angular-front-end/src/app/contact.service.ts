@@ -7,20 +7,7 @@ import { Observable } from "rxjs";
   providedIn: "root"
 })
 export class ContactService {
-  contacts = [
-    {
-      name: "John Boi",
-      phone: "000-000-000",
-      email: "theBoi@email.com",
-      type: "Business"
-    },
-    {
-      name: "Kid Pepe",
-      phone: "001-001-001",
-      email: "itsPepe@email.com",
-      type: "Personal"
-    }
-  ];
+  contacts = [];
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -38,7 +25,7 @@ export class ContactService {
     );
   }
   getContacts() {
-    return this.http.get<Object[]>("http://localhost:3000/contacts");
+    return this.http.get<any[]>(`http://localhost:3000/contacts`);
     //return this.contacts;
   }
 

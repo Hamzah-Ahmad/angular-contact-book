@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-
+import { AuthService } from "../auth.service";
 import { ContactService } from "../contact.service";
 @Component({
   selector: "app-contact",
@@ -9,7 +9,10 @@ import { ContactService } from "../contact.service";
 export class ContactComponent implements OnInit {
   contactList = [];
 
-  constructor(private contactService: ContactService) {}
+  constructor(
+    private contactService: ContactService,
+    private authService: AuthService
+  ) {}
 
   addContact(newContact) {
     this.contactService
@@ -25,8 +28,9 @@ export class ContactComponent implements OnInit {
   }
 
   ngOnInit() {
+    const userId = this.authService.getUserId();
     this.contactService.getContacts().subscribe(data => {
-      this.contactList = data;
+      this.contactList = data.filter(contact => contact.userId == userId);
     });
   }
 }

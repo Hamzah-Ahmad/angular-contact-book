@@ -52,4 +52,9 @@ export class AuthService {
       return false;
     }
   }
+
+  getUserId() {
+    var user = firebase.auth().currentUser;
+    return user.uid;
+  }
 }
