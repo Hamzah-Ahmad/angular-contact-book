@@ -1,0 +1,4 @@
+<app-new-contact (addEvent)="addContact($event)"></app-new-contact>
+<ul>
+  <li *ngFor="let contact of contactList">{{ contact.name }}</li>
+</ul>
