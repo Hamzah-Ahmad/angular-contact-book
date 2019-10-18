@@ -13,6 +13,8 @@ import { ContactComponent } from "./contact/contact.component";
 import { NewContactComponent } from "./new-contact/new-contact.component";
 import { LoginComponent } from "./login/login.component";
 import { SignupComponent } from "./signup/signup.component";
+import { EditContactComponent } from "./edit-contact/edit-contact.component";
+
 import { AuthService } from "./auth.service";
 import { AuthGuardService } from "./auth-guard.service";
 
@@ -32,7 +34,8 @@ export var firebaseConfig = {
     ContactComponent,
     NewContactComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    EditContactComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +49,8 @@ export var firebaseConfig = {
         canActivate: [AuthGuardService]
       },
       { path: "login", component: LoginComponent },
-      { path: "signup", component: SignupComponent }
+      { path: "signup", component: SignupComponent },
+      { path: "edit/:id", component: EditContactComponent }
     ]),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule

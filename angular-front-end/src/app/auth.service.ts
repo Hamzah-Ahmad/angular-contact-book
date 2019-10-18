@@ -15,10 +15,10 @@ export class AuthService {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         this.userId = user.uid;
-        localStorage.setItem("user", user.uid);
+        sessionStorage.setItem("user", user.uid);
       } else {
         this.userId = null;
-        localStorage.removeItem("user");
+        sessionStorage.removeItem("user");
       }
     });
   }
@@ -50,7 +50,7 @@ export class AuthService {
   logout() {
     this.firebaseAuth.auth.signOut().then(() => {
       this.router.navigate(["login"]);
-      localStorage.removeItem("user");
+      sessionStorage.removeItem("user");
     });
   }
 

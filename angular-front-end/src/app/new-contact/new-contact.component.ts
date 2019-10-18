@@ -23,7 +23,7 @@ export class NewContactComponent implements OnInit {
       phone: this.phone,
       email: this.email,
       type: this.type,
-      userId: localStorage.getItem("user")
+      userId: sessionStorage.getItem("user")
     };
     this.addEvent.emit(newContact);
     console.log("test");

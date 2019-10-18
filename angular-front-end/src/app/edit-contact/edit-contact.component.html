@@ -1,0 +1,14 @@
+<!--The ngIf below ensures that contact has been properly loaded before trying to render contact.name. Without it an error shows up on the console-->
+<h1 *ngIf="contact">{{ contact.name }}</h1>
+
+<div *ngIf="contact">
+  <input type="text" [value]="name" [(ngModel)]="name" />
+  <br />
+  <input type="text" [value]="phone" [(ngModel)]="phone" />
+  <br />
+  <input type="text" [value]="email" [(ngModel)]="email" />
+  <br />
+  <input type="text" [value]="type" [(ngModel)]="type" />
+  <br />
+  <button (click)="editContact()">Submit</button>
+</div>
