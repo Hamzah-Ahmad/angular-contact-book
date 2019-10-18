@@ -5,12 +5,22 @@ import { AngularFireAuth } from "angularfire2/auth";
 import * as firebase from "firebase/app";
 
 import { Observable } from "rxjs";
+import { first } from "rxjs/operators";
 @Injectable()
 export class AuthService {
   user: Observable<firebase.User>;
-
+  userId;
   constructor(private firebaseAuth: AngularFireAuth, private router: Router) {
     this.user = firebaseAuth.authState;
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.userId = user.uid;
+        localStorage.setItem("user", user.uid);
+      } else {
+        this.userId = null;
+        localStorage.removeItem("user");
+      }
+    });
   }
 
   signup(email: string, password: string) {
@@ -40,21 +50,11 @@ export class AuthService {
   logout() {
     this.firebaseAuth.auth.signOut().then(() => {
       this.router.navigate(["login"]);
+      localStorage.removeItem("user");
     });
   }
 
   isLoggedIn() {
-    var user = firebase.auth().currentUser;
-
-    if (user) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  getUserId() {
-    var user = firebase.auth().currentUser;
-    return user.uid;
+    return this.firebaseAuth.authState.pipe(first()).toPromise();
   }
 }

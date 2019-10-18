@@ -9,11 +9,13 @@ router.post("/", async (req, res) => {
     const phone = req.body.phone;
     const type = req.body.type;
     const email = req.body.email;
+    const userId = req.body.userId;
     const newContact = new Contact({
       name,
       phone,
       type,
-      email
+      email,
+      userId
     });
     const contact = await newContact.save();
     res.json(contact);

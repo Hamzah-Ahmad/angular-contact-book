@@ -28,7 +28,8 @@ export class ContactComponent implements OnInit {
   }
 
   ngOnInit() {
-    const userId = this.authService.getUserId();
+    const userId = localStorage.getItem("user");
+
     this.contactService.getContacts().subscribe(data => {
       this.contactList = data.filter(contact => contact.userId == userId);
     });
