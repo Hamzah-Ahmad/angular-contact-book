@@ -1,0 +1,22 @@
+example-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.mb {
+  margin-bottom: 30px;
+}
+.example-container > * {
+  width: 100%;
+}
+
+.editPage {
+  width: 50%;
+  margin: auto;
+}
+
+@media screen and (max-width: 450px) {
+  .example-container > * {
+    width: 100%;
+  }
+}

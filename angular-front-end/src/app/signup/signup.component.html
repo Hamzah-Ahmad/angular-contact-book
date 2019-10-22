@@ -2,7 +2,7 @@
   <h1>SignUp</h1>
   <form>
     <div class="example-container">
-      <mat-form-field>
+      <mat-form-field class="mb">
         <input
           matInput
           type="text"
@@ -15,7 +15,7 @@
       </mat-form-field>
     </div>
     <div class="example-container">
-      <mat-form-field>
+      <mat-form-field class="mb">
         <input
           matInput
           type="password"
@@ -26,9 +26,13 @@
         />
       </mat-form-field>
     </div>
+    <small class="mt">
+      Already registered? <a [routerLink]="['/login']">Login here</a>
+    </small>
+    <br />
     <button
       mat-button
-      class="btn"
+      class="btn mt"
       (click)="authService.signup(userEmail.value, userPassword.value)"
     >
       SignUp

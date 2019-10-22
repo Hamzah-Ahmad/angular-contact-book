@@ -1,17 +1,64 @@
 <div *ngIf="authService.isLoggedIn">
-  <button class="btn mb" mat-button (click)="authService.logout()">
+  <button
+    class="mb"
+    mat-raised-button
+    color="primary"
+    (click)="authService.logout()"
+  >
     Logout
   </button>
 </div>
 
-<div class="clr"></div>
 <app-new-contact (addEvent)="addContact($event)"></app-new-contact>
+<br />
 <!-- <h1>{{ userId }}</h1> -->
-<mat-list>
-  <mat-list-item *ngFor="let contact of contactList">
-    {{ contact.name }}
-    <a [routerLink]="['/edit', contact._id]">Edit</a>
-    <button (click)="deleteContact(contact._id)">Delete</button>
+
+<mat-card>
+  <mat-grid-list cols="13" rowHeight="100px">
+    <mat-grid-tile colspan="2">
+      <strong>Name</strong>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2">
+      <strong>Phone</strong>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="3">
+      <strong>Email</strong>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2">
+      <div class="hideOnMob"><strong>Type</strong></div>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <mat-grid-list
+    *ngFor="let contact of contactList"
+    cols="13"
+    rowHeight="100px"
+  >
+    <mat-grid-tile colspan="2">{{ contact.name }}</mat-grid-tile>
+    <mat-grid-tile colspan="2">{{ contact.phone }}</mat-grid-tile>
+    <mat-grid-tile colspan="3">{{ contact.email }}</mat-grid-tile>
+    <mat-grid-tile colspan="2">
+      <div class="hideOnMob">{{ contact.type }}</div>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2">
+      <a
+        mat-stroked-button
+        color="accent"
+        class="hideOnMob"
+        [routerLink]="['/edit', contact._id]"
+      >
+        Edit
+      </a>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2">
+      <button
+        mat-stroked-button
+        color="warn"
+        class="hideOnMob"
+        (click)="deleteContact(contact._id)"
+      >
+        Delete
+      </button>
+    </mat-grid-tile>
     <mat-divider></mat-divider>
-  </mat-list-item>
-</mat-list>
+  </mat-grid-list>
+</mat-card>

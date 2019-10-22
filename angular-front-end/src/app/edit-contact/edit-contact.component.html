@@ -1,14 +1,59 @@
 <!--The ngIf below ensures that contact has been properly loaded before trying to render contact.name. Without it an error shows up on the console-->
-<h1 *ngIf="contact">{{ contact.name }}</h1>
+<!-- <h1 *ngIf="contact">{{ contact.name }}</h1> -->
 
-<div *ngIf="contact">
-  <input type="text" [value]="name" [(ngModel)]="name" />
+<div *ngIf="contact" class="editPage">
+  <div class="example-container">
+    <mat-form-field class="mb">
+      <input
+        matInput
+        class="form-control"
+        type="text"
+        placeholder="Name"
+        [value]="name"
+        [(ngModel)]="name"
+      />
+    </mat-form-field>
+    <br />
+    <mat-form-field class="mb">
+      <input
+        matInput
+        class="form-control"
+        type="text"
+        placeholder="Phone"
+        [value]="phone"
+        [(ngModel)]="phone"
+      />
+    </mat-form-field>
+    <br />
+    <mat-form-field class="mb">
+      <input
+        matInput
+        class="form-control"
+        type="text"
+        placeholder="Email"
+        [value]="email"
+        [(ngModel)]="email"
+      />
+    </mat-form-field>
+    <br />
+    <mat-form-field class="mb">
+      <!-- <input
+        matInput
+        class="form-control"
+        type="text"
+        placeholder="Type"
+        [value]="type"
+        [(ngModel)]="type"
+      /> -->
+      <mat-label>Contact Type</mat-label>
+      <select matNativeControl [(ngModel)]="type">
+        <option value="Personal">Personal</option>
+        <option value="Business">Business</option>
+      </select>
+    </mat-form-field>
+  </div>
   <br />
-  <input type="text" [value]="phone" [(ngModel)]="phone" />
-  <br />
-  <input type="text" [value]="email" [(ngModel)]="email" />
-  <br />
-  <input type="text" [value]="type" [(ngModel)]="type" />
-  <br />
-  <button (click)="editContact()">Submit</button>
+  <button mat-stroked-button color="primary" (click)="editContact()">
+    Submit
+  </button>
 </div>

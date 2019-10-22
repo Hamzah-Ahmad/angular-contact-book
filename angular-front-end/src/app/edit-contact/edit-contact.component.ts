@@ -19,17 +19,22 @@ export class EditContactComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private contactService: ContactService
-  ) {}
+  ) {
+    console.log("Reached edit");
+  }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      this.contactService.getContactById(this.contactId).subscribe(contact => {
-        this.contact = contact;
-        this.name = this.contact.name;
-        this.phone = this.contact.phone;
-        this.email = this.contact.email;
-        this.type = this.contact.type;
-      });
+      this.contactId = params.get("id");
+      this.contactService
+        .getContactById(params.get("id"))
+        .subscribe(contact => {
+          this.contact = contact;
+          this.name = this.contact.name;
+          this.phone = this.contact.phone;
+          this.email = this.contact.email;
+          this.type = this.contact.type;
+        });
     });
   }
 
@@ -39,7 +44,7 @@ export class EditContactComponent implements OnInit {
       phone: this.phone,
       email: this.email,
       type: this.type,
-      userId: localStorage.getItem("user")
+      userId: JSON.parse(localStorage.getItem("user"))
     };
     this.contactService.editContact(this.contactId, newContact).subscribe();
     this.router.navigate(["/"]);

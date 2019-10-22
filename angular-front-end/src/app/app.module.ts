@@ -16,6 +16,7 @@ import { MatListModule } from "@angular/material/list";
 import { MatDividerModule } from "@angular/material/divider";
 import { MatExpansionModule } from "@angular/material/expansion";
 import { MatSelectModule } from "@angular/material/select";
+import { MatGridListModule } from "@angular/material/grid-list";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 import { AppComponent } from "./app.component";
@@ -58,6 +59,7 @@ export var firebaseConfig = {
     MatDividerModule,
     MatExpansionModule,
     MatSelectModule,
+    MatGridListModule,
     BrowserAnimationsModule,
     RouterModule.forRoot([
       {

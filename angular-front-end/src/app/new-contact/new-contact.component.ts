@@ -26,5 +26,9 @@ export class NewContactComponent implements OnInit {
       userId: JSON.parse(localStorage.getItem("user"))
     };
     this.addEvent.emit(newContact);
+    this.name = "";
+    this.phone = "";
+    this.email = "";
+    this.type = "";
   }
 }
