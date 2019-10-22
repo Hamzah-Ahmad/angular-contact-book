@@ -1,0 +1,28 @@
+example-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.example-container > * {
+  width: 50%;
+}
+
+.btn {
+  background-color: #3f51b5;
+  color: white;
+}
+
+.auth-form {
+  padding-top: 5% !important;
+  padding-left: 40% !important;
+}
+
+@media screen and (max-width: 450px) {
+  .auth-form {
+    padding: 0px !important;
+    padding-top: 30% !important;
+  }
+  .example-container > * {
+    width: 100%;
+  }
+}

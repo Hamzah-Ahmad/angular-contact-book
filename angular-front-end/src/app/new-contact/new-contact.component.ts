@@ -1,5 +1,4 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
-import { AuthService } from "../auth.service";
 @Component({
   selector: "app-new-contact",
   templateUrl: "./new-contact.component.html",
@@ -7,13 +6,13 @@ import { AuthService } from "../auth.service";
 })
 export class NewContactComponent implements OnInit {
   @Output() addEvent = new EventEmitter();
-  constructor(private authService: AuthService) {}
+  constructor() {}
 
   name: "";
   phone: "";
   email: "";
   type: "";
-  userId: "";
+  userId;
 
   ngOnInit() {}
 
@@ -23,9 +22,9 @@ export class NewContactComponent implements OnInit {
       phone: this.phone,
       email: this.email,
       type: this.type,
-      userId: sessionStorage.getItem("user")
+      //userId: "cUhh05utFqg1WsiaCjuDIaD3zGx2"
+      userId: JSON.parse(localStorage.getItem("user"))
     };
     this.addEvent.emit(newContact);
-    console.log("test");
   }
 }

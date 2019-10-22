@@ -1,8 +1,37 @@
-<div *ngIf="!(authService.user | async)">
-  <input type="text" [(ngModel)]="email" placeholder="email" />
-  <input type="password" [(ngModel)]="password" placeholder="email" />
-
-  <button (click)="login()" [disabled]="!email || !password">
-    Login
-  </button>
+<div class="auth-form">
+  <h1>Log In</h1>
+  <form>
+    <div class="example-container">
+      <mat-form-field>
+        <input
+          matInput
+          type="text"
+          class="form-control"
+          placeholder="Email"
+          #userEmail
+          required
+          autofocus
+        />
+      </mat-form-field>
+    </div>
+    <div class="example-container">
+      <mat-form-field>
+        <input
+          matInput
+          type="password"
+          class="form-control"
+          placeholder="Password"
+          #userPassword
+          required
+        />
+      </mat-form-field>
+    </div>
+    <button
+      mat-button
+      class="btn"
+      (click)="authService.login(userEmail.value, userPassword.value)"
+    >
+      Login
+    </button>
+  </form>
 </div>

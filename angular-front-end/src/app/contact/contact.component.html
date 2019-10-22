@@ -1,8 +1,17 @@
+<div *ngIf="authService.isLoggedIn">
+  <button class="btn mb" mat-button (click)="authService.logout()">
+    Logout
+  </button>
+</div>
+
+<div class="clr"></div>
 <app-new-contact (addEvent)="addContact($event)"></app-new-contact>
-<ul>
-  <li *ngFor="let contact of contactList">
+<!-- <h1>{{ userId }}</h1> -->
+<mat-list>
+  <mat-list-item *ngFor="let contact of contactList">
     {{ contact.name }}
     <a [routerLink]="['/edit', contact._id]">Edit</a>
     <button (click)="deleteContact(contact._id)">Delete</button>
-  </li>
-</ul>
+    <mat-divider></mat-divider>
+  </mat-list-item>
+</mat-list>

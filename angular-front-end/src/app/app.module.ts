@@ -6,17 +6,25 @@ import { Routes, RouterModule, CanActivate } from "@angular/router";
 
 import { AngularFireModule } from "angularfire2";
 import { AngularFireAuthModule } from "angularfire2/auth";
-
 import { AppRoutingModule } from "./app-routing.module";
+
+import { MatInputModule } from "@angular/material/input";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatButtonModule } from "@angular/material/button";
+import { MatCardModule } from "@angular/material/card";
+import { MatListModule } from "@angular/material/list";
+import { MatDividerModule } from "@angular/material/divider";
+import { MatExpansionModule } from "@angular/material/expansion";
+import { MatSelectModule } from "@angular/material/select";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+
 import { AppComponent } from "./app.component";
 import { ContactComponent } from "./contact/contact.component";
 import { NewContactComponent } from "./new-contact/new-contact.component";
+import { EditContactComponent } from "./edit-contact/edit-contact.component";
+import { AuthGuardService } from "./auth-guard.service";
 import { LoginComponent } from "./login/login.component";
 import { SignupComponent } from "./signup/signup.component";
-import { EditContactComponent } from "./edit-contact/edit-contact.component";
-
-import { AuthService } from "./auth.service";
-import { AuthGuardService } from "./auth-guard.service";
 
 export var firebaseConfig = {
   apiKey: "AIzaSyAb5Z3I3RCoRv4ymqd0UYCzGZjvqcY5blc",
@@ -33,29 +41,45 @@ export var firebaseConfig = {
     AppComponent,
     ContactComponent,
     NewContactComponent,
+    EditContactComponent,
     LoginComponent,
-    SignupComponent,
-    EditContactComponent
+    SignupComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatCardModule,
+    MatListModule,
+    MatDividerModule,
+    MatExpansionModule,
+    MatSelectModule,
+    BrowserAnimationsModule,
     RouterModule.forRoot([
       {
         path: "",
         component: ContactComponent,
         canActivate: [AuthGuardService]
       },
-      { path: "login", component: LoginComponent },
-      { path: "signup", component: SignupComponent },
+      {
+        path: "signup",
+        component: SignupComponent
+      },
+      {
+        path: "login",
+        component: LoginComponent
+      },
       { path: "edit/:id", component: EditContactComponent }
     ]),
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    BrowserAnimationsModule
   ],
-  providers: [AuthService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

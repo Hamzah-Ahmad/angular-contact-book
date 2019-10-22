@@ -48,13 +48,15 @@ router.patch("/:id", async (req, res) => {
     const phone = req.body.phone;
     const type = req.body.type;
     const email = req.body.email;
+    const userId = req.body.userId;
     const updatedContact = await Contact.updateOne(
       { _id: req.params.id },
       {
         name,
         phone,
         email,
-        type
+        type,
+        userId
       }
     );
     res.json(updatedContact);

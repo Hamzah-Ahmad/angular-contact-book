@@ -15,7 +15,6 @@ export class EditContactComponent implements OnInit {
   phone: "";
   email: "";
   type: "";
-  userId: "";
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -24,14 +23,12 @@ export class EditContactComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      this.contactId = params.get("id");
       this.contactService.getContactById(this.contactId).subscribe(contact => {
         this.contact = contact;
         this.name = this.contact.name;
         this.phone = this.contact.phone;
         this.email = this.contact.email;
         this.type = this.contact.type;
-        this.userId = this.contact.userId;
       });
     });
   }
@@ -42,7 +39,7 @@ export class EditContactComponent implements OnInit {
       phone: this.phone,
       email: this.email,
       type: this.type,
-      userId: this.contact.userId
+      userId: localStorage.getItem("user")
     };
     this.contactService.editContact(this.contactId, newContact).subscribe();
     this.router.navigate(["/"]);
