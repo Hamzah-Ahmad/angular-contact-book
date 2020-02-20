@@ -5,7 +5,7 @@ const app = express();
 
 mongoose
   .connect(
-    "mongodb+srv://Hamzah:hamzahpassword@cluster0-20vtk.mongodb.net/contactsDB?retryWrites=true&w=majority",
+    "mongodb://localhost/angular-contact",
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
